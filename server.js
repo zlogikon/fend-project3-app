@@ -37,7 +37,7 @@ function listening(){
 }
 
 // Put something on the page
-// Visit http://localhost:(port)
+// Visit http://localhost:(port) in the browser
 
 let text = "Fun fun fun!!";
 
