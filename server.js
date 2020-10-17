@@ -39,8 +39,14 @@ function listening(){
 // Put something on the page
 // Visit http://localhost:(port) in the browser
 
-let text = "Fun fun fun!!";
+let text = "Fun fun fun GAAAA!!!";
 
-app.get('/', (req, res) => {
-  res.send(text)
-})
+app.get('/animal', (req, res) => {
+  res.send(text);
+});
+
+const data = [];
+
+app.post('/animal', (req, res) => {
+  data.push(req.body);
+});
