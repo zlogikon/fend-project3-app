@@ -50,8 +50,7 @@ const data =[];
 app.post('/new', addMovie)
 
 function addMovie (req, res) {
-    //let data = request.body;
     data.push(req.body);
-    console.log(data);
-    //res.send("Received");
+    //console.log(data)
+    //console.log("This works")
 };
