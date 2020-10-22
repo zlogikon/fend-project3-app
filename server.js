@@ -28,7 +28,7 @@ app.use(express.static('website'));
 
 // Setup Server
 
-const port = 5012;
+const port = 5022;
 
 const server = app.listen(port, listening);
 
