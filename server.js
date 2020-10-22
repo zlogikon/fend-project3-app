@@ -41,17 +41,16 @@ function listening(){
 
 //myText = "Hello!!!";
 
-//app.get('/new', (req, res) => {
-  //res.send(projectData);
-  //console.log(projectData);
-//});
+app.get('/new', (req, res) => {
+  res.send(projectData);
+  console.log(projectData);
+});
 
-const data =[];
+const userData =[];
 
-app.post('/new', addMovie)
+app.post('/new', addUserData)
 
-function addMovie (req, res) {
-    data.push(req.body);
-    //console.log(data)
-    //console.log("This works")
+function addUserData (req, res) {
+    userData.push(req.body);
+    console.log(userData)
 };
