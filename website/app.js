@@ -1,10 +1,21 @@
 /* Global Variables */
 
+const owKey = "a80041731fd607ec371c762566772248";
+const owURL = "api.openweathermap.org/data/2.5/weather?zip=";
+const owCountry = "US";
+
+let zip = 49441;
+//const zip = document.getElementById('zip').value;
+
+let owAPI = owURL+zip+","+owCountry+"&appid="+owKey;
+
+
+
+
+//api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
 // Create a new date instance dynamically with JS
 let d = new Date();
 let newDate = d.getMonth()+'.'+ d.getDate()+'.'+ d.getFullYear();
-//console.log(newDate);
-
 
 const postData = async ( url = '', data = {})=>{
     console.log(data);
@@ -26,5 +37,4 @@ const postData = async ( url = '', data = {})=>{
       }
   }
 
-postData('/new', {movie: 'Matrix', score: 5});
-postData('/new', {movie: 'Hubie Halloween', score: 4});
+postData('/new', {date: newDate, score: 5});
