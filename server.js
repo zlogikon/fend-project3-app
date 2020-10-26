@@ -25,7 +25,6 @@ app.use(cors());
 
 app.use(express.static('website'));
 
-
 // Setup Server
 
 const port = 5022;
@@ -40,12 +39,12 @@ app.get('/all', sendUserData)
 
 function sendUserData (req, res) {
   res.send(projectData);
-  //console.log(projectData);
+  console.log(projectData);
 };
 
 app.post('/add', addUserData)
 
 function addUserData (req, res) {
     projectData = req.body;
-    //console.log(projectData)
+    console.log(projectData)
 };
