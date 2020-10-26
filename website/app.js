@@ -9,10 +9,10 @@ const genBttn = document.getElementById("generate");
 let zip = "";
 let feelings = "";
 let owAPI = "";
-let myWeather = 0;
+let myWeather = "";
 let newDate = "";
 
-//get the weather
+// Generate data and execute asynchronous scripts
 
 genBttn.addEventListener("click", function() {
   feelings = document.getElementById('feelings').value;
@@ -21,8 +21,8 @@ genBttn.addEventListener("click", function() {
     
   //for testing
   
-  //console.log(zip);
-  //console.log(feelings);
+  console.log(zip);
+  console.log(feelings);
   //document.getElementById("date").innerHTML = "Date: " + newDate;
   //document.getElementById("temp").innerHTML = "Weather: " + myWeather + " &#8457;";
   //document.getElementById("content").innerHTML = "Journal entry: " + feelings;
@@ -41,6 +41,8 @@ genBttn.addEventListener("click", function() {
   
 });
 
+// Get weather from openweather api
+
 const getWeather = async () => {
   const request = await fetch(owAPI);
   try {
@@ -54,11 +56,8 @@ const getWeather = async () => {
   }
 };
 
-
-
-//api.openweathermap.org/data/2.5/weather?zip={zip code},{country code}&appid={API key}
-
 // Create date
+
 getDate = () =>{
   let d = new Date();
   let min = '';
@@ -79,26 +78,30 @@ getDate = () =>{
   newDate = d.getMonth()+'/'+ d.getDate()+'/'+ d.getFullYear() + ' | ' + hour + ':' + min + d.getMinutes() + ampm;
 };
 
+//Post data to the server
+
 const postData = async ( url = '', data = {}) => {
-    //console.log(data)
-    const response = await fetch(url, {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    credentials: 'same-origin', // include, *same-origin, omit
+  //console.log(data)
+  const response = await fetch(url, {
+    method: 'POST',
+    credentials: 'same-origin',
     headers: {
-        'Content-Type': 'application/json',
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(data), // body data type must match "Content-Type" header        
+    body: JSON.stringify(data),   
   });
 
-    try {
-      const newData = await response.json();
-      // console.log(newData);
-      return newData
-    }catch(error) {
-    console.log("error", error);
-    // appropriately handle the error
-    }
+  try {
+    const newData = await response.json();
+    // console.log(newData);
+    return newData
+  }catch(error) {
+  console.log("error", error);
+  
+  }
 };
+
+//Get data from server and update the webpage
 
 const updateUI = async () => {
   const request = await fetch ('/all')
