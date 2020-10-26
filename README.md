@@ -1,5 +1,11 @@
 # Weather-Journal App Project
 
+This project was created as part of Udacity's Front End Design Nanodegree program. It included HTML and CSS templates which have been modified. All JavaScript is original.
+
+The project was designed to give experience working with node.js and web APIs.
+
+
+
 ## Overview
 This project requires you to create an asynchronous web app that uses Web API and user data to dynamically update the UI. 
 
