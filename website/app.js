@@ -1,6 +1,6 @@
 /* Global Variables */
 
-const owKey = "a80041731fd607ec371c762566772248";
+const owKey = "a80041731fd607ec371c762566772248&units=imperial";
 const owURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const owCountry = ",US";
 const appid = "&appid="
@@ -47,7 +47,7 @@ const getWeather = async () => {
   const request = await fetch(owAPI);
   try {
     const data = await request.json();
-    myWeather = Math.floor(data.main.temp.toFixed(0) * 9/5 - 459.67);
+    myWeather = Math.floor(data.main.temp.toFixed(0));
     console.log(myWeather);
     return data;
     
