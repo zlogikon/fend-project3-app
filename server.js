@@ -1,5 +1,5 @@
 // Setup empty JS object to act as endpoint for all routes
-let projectData = {};
+let projectData = [];
 
 // Require Express to run server and routes
 const express = require('express');
@@ -36,21 +36,16 @@ function listening(){
   console.log(`Server is running on localhost: ${port}`);
 }
 
-// Put something on the page
-// Visit http://localhost:(port) in the browser
+app.get('/all', sendUserData)
 
-//myText = "Hello!!!";
-
-app.get('/new', (req, res) => {
+function sendUserData (req, res) {
   res.send(projectData);
   console.log(projectData);
-});
+};
 
-const userData =[];
-
-app.post('/new', addUserData)
+app.post('/add', addUserData)
 
 function addUserData (req, res) {
-    userData.push(req.body);
-    console.log(userData)
+    projectData.push(req.body);
+    console.log(projectData)
 };
