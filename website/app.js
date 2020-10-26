@@ -6,11 +6,10 @@ const owCountry = ",US";
 const appid = "&appid="
 const genBttn = document.getElementById("generate");
 
-
 let zip = "";
 let feelings = "";
 let owAPI = "";
-let myWeather = "";
+let myWeather = 0;
 let newDate = "";
 
 //get the weather
@@ -22,18 +21,21 @@ genBttn.addEventListener("click", function() {
     
   //for testing
   
-  console.log(zip);
-  console.log(feelings);
+  //console.log(zip);
+  //console.log(feelings);
   //document.getElementById("date").innerHTML = "Date: " + newDate;
   //document.getElementById("temp").innerHTML = "Weather: " + myWeather + " &#8457;";
   //document.getElementById("content").innerHTML = "Journal entry: " + feelings;
 
-  getDate();
+  getDate()
   getWeather()
   .then(() => {
-     postData('/add', {newDate, feelings, myWeather});
+    //console.log(data)
+    postData('/add', {newDate, feelings, myWeather});
   })
-  //.then(())
+  .then(() => {
+    updateUI()
+  })
   
     
   
@@ -78,7 +80,7 @@ getDate = () =>{
 };
 
 const postData = async ( url = '', data = {}) => {
-    console.log(data)
+    //console.log(data)
     const response = await fetch(url, {
     method: 'POST', // *GET, POST, PUT, DELETE, etc.
     credentials: 'same-origin', // include, *same-origin, omit
@@ -97,3 +99,16 @@ const postData = async ( url = '', data = {}) => {
     // appropriately handle the error
     }
 };
+
+const updateUI = async () => {
+  const request = await fetch ('/all')
+  try{
+    const allData = await request.json()
+    //console.log(allData);
+  document.getElementById("date").innerHTML = "Date: " + allData.newDate;
+  document.getElementById("temp").innerHTML = "Weather: " + allData.myWeather + " &#8457;";
+  document.getElementById("content").innerHTML = "Journal entry: " + allData.feelings;
+  }catch(error){
+    console.log("error", error)
+  }
+}
