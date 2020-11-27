@@ -1,6 +1,6 @@
 /* Global Variables */
 
-const owKey = "a80041731fd607ec371c762566772248&units=imperial";
+const owKey = "&units=imperial";
 const owURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const owCountry = ",US";
 const appid = "&appid="
