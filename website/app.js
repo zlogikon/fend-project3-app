@@ -1,6 +1,6 @@
 /* Global Variables */
 
-const owKey = "&units=imperial";
+const owKey = "&units=imperial"; // Open Weather API is private
 const owURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
 const owCountry = ",US";
 const appid = "&appid="
