@@ -27,6 +27,12 @@ app.use(express.static('website'));
 
 // Setup Server
 
+const URLBase = 'https://api.meaningcloud.com/sentiment-2.1?key='
+const URLLang = '&lang=auto&url='
+const TestURL = ''
+const apiKey = 11111
+const resURL= ''
+
 const port = 5022;
 
 const server = app.listen(port, listening);
@@ -39,12 +45,13 @@ app.get('/all', sendUserData)
 
 function sendUserData (req, res) {
   res.send(projectData);
-  console.log(projectData);
+  //console.log(projectData);
 };
 
 app.post('/add', addUserData)
 
 function addUserData (req, res) {
     projectData = req.body;
-    console.log(projectData)
+    owAPI = URLBase + apiKey + URLLang + TestURL
+    console.log(owAPI)
 };

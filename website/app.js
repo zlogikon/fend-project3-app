@@ -1,37 +1,34 @@
 /* Global Variables -- changes */
 
-const owKey = "&units=imperial"; // Open Weather API is private
-const owURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
-const owCountry = ",US";
-const appid = "&appid="
+/*const dotenv = require('dotenv');
+dotenv.config();
+const apiKey = process.env.API_KEY*/
+
 const genBttn = document.getElementById("generate");
 
-let zip = "";
-let feelings = "";
 let owAPI = "";
-let myWeather = "";
-let newDate = "";
+
+URLBase = 'https://api.meaningcloud.com/sentiment-2.1?key='
+URLLang = '&lang=auto&url='
+TestURL = ''
+ 
+
+const apiKey = '7f8287a371a07b03325f2da9e55f28ce'
+
+const resURL= ''
+
 
 // Generate data and execute asynchronous scripts
 
 genBttn.addEventListener("click", function() {
-  feelings = document.getElementById('feelings').value;
-  zip = document.getElementById('zip').value;
-  owAPI = owURL+zip+owCountry+appid+owKey;
-    
-  //for testing
-  
-  console.log(zip);
-  console.log(feelings);
-  //document.getElementById("date").innerHTML = "Date: " + newDate;
-  //document.getElementById("temp").innerHTML = "Weather: " + myWeather + " &#8457;";
-  //document.getElementById("content").innerHTML = "Journal entry: " + feelings;
+  TestURL = document.getElementById('TestURL').value;
 
+  
   getDate()
-  getWeather()
+  
   .then(() => {
     //console.log(data)
-    postData('/add', {newDate, feelings, myWeather});
+    postData('/add', {newDate, TestURL});
   })
   .then(() => {
     updateUI()
@@ -43,12 +40,14 @@ genBttn.addEventListener("click", function() {
 
 // Get weather from openweather api
 
-const getWeather = async () => {
+const analyzeURL = async () => {
+  owAPI = URLBase + apiKey + URLLang + TestURL
   const request = await fetch(owAPI);
   try {
     const data = await request.json();
-    myWeather = Math.floor(data.main.temp.toFixed(0));
-    console.log(myWeather);
+    console.log("Passed");
+    console.log(owAPI);
+
     return data;
     
   }catch(error){
@@ -58,7 +57,7 @@ const getWeather = async () => {
 
 // Create date
 
-getDate = () =>{
+getDate = async () =>{
   let d = new Date();
   let min = '';
   let hour = '';
@@ -109,8 +108,7 @@ const updateUI = async () => {
     const allData = await request.json()
     //console.log(allData);
   document.getElementById("date").innerHTML = "Date: " + allData.newDate;
-  document.getElementById("temp").innerHTML = "Weather: " + allData.myWeather + " &#8457;";
-  document.getElementById("content").innerHTML = "Journal entry: " + allData.feelings;
+  document.getElementById("content").innerHTML = "Journal entry: " + allData.TestURL;
   }catch(error){
     console.log("error", error)
   }
