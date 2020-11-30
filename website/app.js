@@ -1,4 +1,4 @@
-/* Global Variables */
+/* Global Variables -- changes */
 
 const owKey = "&units=imperial"; // Open Weather API is private
 const owURL = "https://api.openweathermap.org/data/2.5/weather?zip=";
