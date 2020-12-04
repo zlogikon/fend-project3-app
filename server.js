@@ -3,13 +3,12 @@ let projectData = {};
 
 // Require Express to run server and routes
 const express = require('express');
-
-// Start up an instance of app
 const app = express();
 
 //Dependencies
 
 const bodyParser = require('body-parser');
+const fetch = require('node-fetch')
 
 /* Middleware*/
 //Here we are configuring express to use body-parser as middle-ware.
@@ -29,8 +28,8 @@ app.use(express.static('website'));
 
 const URLBase = 'https://api.meaningcloud.com/sentiment-2.1?key='
 const URLLang = '&lang=auto&url='
-const TestURL = ''
-const apiKey = 11111
+
+const apiKey = '7f8287a371a07b03325f2da9e55f28ce'
 const resURL= ''
 
 const port = 5050;
@@ -50,8 +49,28 @@ function sendUserData (req, res) {
 
 app.post('/add', addUserData)
 
-function addUserData (req, res) {
-    projectData = req.body;
-    owAPI = URLBase + apiKey + URLLang + TestURL
-    console.log(owAPI)
+async function addUserData (req, res) {
+  projectData = req.body.TestURL;
+  //const testURL = await projectData.json()
+  url = URLBase + apiKey + URLLang + projectData
+  const owAPI = await fetch(url)
+  console.log(url)
+
+
+  try {
+    const nlpData = await owAPI.json()
+    if (nlpData.status.code == 0) {
+        //nlpData.message = "Good data received from API"
+        res.send(nlpData)
+        console.log('API is working')
+        console.log(nlpData)
+    } else {
+        //res.send({ message: "API call didn't work" })
+        console.log('API Failed')
+
+    }
+  } catch (error) {
+    console.error(error)
+  }
+
 };

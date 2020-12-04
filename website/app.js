@@ -11,9 +11,6 @@ let owAPI = "";
 URLBase = 'https://api.meaningcloud.com/sentiment-2.1?key='
 URLLang = '&lang=auto&url='
 TestURL = ''
- 
-
-const apiKey = '7f8287a371a07b03325f2da9e55f28ce'
 
 const resURL= ''
 
